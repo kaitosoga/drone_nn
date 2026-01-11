@@ -1,2 +1,14 @@
 venv/
 venv0/
+projekt_plan.aux
+projekt_plan.fdb_latex
+projekt_plan.fls
+projekt_plan.log
+projekt_plan.bbl
+projekt_plan.bcf
+projekt_plan.blg
+projekt_plan.fdb_latexmk
+projekt_plan.out
+projekt_plan.run.xml
+projekt_plan.synctex.gz
+.vscode/
