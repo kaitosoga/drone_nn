@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>drag & drop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div id="zone0" ondragover="onDragOver(event);" ondrop="onDrop(event);">
+        <div id="element" draggable="true" ondragstart="onDragStart(event);">
+            <p id="val">0</p>
+            <button id="up" onclick="add()">+</button>
+            <button id="down" onclick="substract()">-</button>
+        </div>
+    </div>
+
+    <div id="zone1" ondragover="onDragOver(event);" ondrop="onDrop(event);"></div>
+
+    <div id="output"></div>
+
+    <script src="drag-drop.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+body {
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+}
+
+#zone0, #zone1 {
+    background-color: rgb(15, 15, 15);
+    color: aliceblue;
+    max-width: 100px;
+    min-height: 150px;
+    
+    flex-basis: 100%;
+    flex-grow: 1;
+    padding: 10px;
+    margin: 10px 10px 10px 10px;
+}
+
+#element {
+    background-color: #00725d;
+    font-weight: normal;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+#output {
+    color: rgb(255, 255, 255);
+}
