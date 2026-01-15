@@ -44,11 +44,11 @@ In dem geplanten Game tritt ein User in einem Rennen gegen eine KI gesteuerte 2D
 
 Die Steuerung für den User besteht aus zwei Inputs, welche die zwei Antriebe der Drone kontrollieren. Die KI steuert ihre Drone mit einem simplen feedforward network (FFN).
 
-Zusätzlich kann ein User, durch das Bauen einer Funktion die den Zustandsvektor als input nimmt und als output die Antriebswerte der Drone zurückgibt, einen eigenenen Controller erstellen. Diese kann ebenfalls gegen die KI oder den User selbst antreten.
+Zusätzlich kann ein User, durch das Bauen einer Funktion die den Zustandsvektor als input nimmt und als Output die Antriebswerte der Drone zurückgibt, einen eigenenen Controller erstellen. Diese kann ebenfalls gegen die KI oder den User selbst antreten.
 
 Die Drone selbst unterliegt realistischen Physikalischen Eigenschaften (Schwerkraft, Momentum, Beschleunigung, Rotation (-sgeschindigkeit)), und die Umgebung wird zufällig mit vorbestimmten Bildern generiert, wobei die Drone im Mittelpunkt des Canvas bleibt, sodass sich der Hintergrund bewegt.
 
-*Sollte die Zeit noch reichen, werde ich ein Zusätzlich das innere der KI visualisieren, um Usern eine Einsicht in dessen Funktion zu gebem. Der Fokus liegt dabei nicht auf dem Game, sondern darauf, die KI durch intuitive Visualisierung zu verstehen und zu in Echtzeit zu testen.
+*Sollte die Zeit noch reichen, werde ich das innere der KI visualisieren, um Usern eine Einsicht in dessen Funktion zu gebem. Der Fokus liegt dabei nicht auf dem Game, sondern darauf, die KI durch intuitive Visualisierung zu verstehen und zu in Echtzeit zu testen.
 
 Für mehr Interaktion werde ich im Backend auf einem Raspberry-Pi ein simples Login erstellen, um Usern einen Top-Score, Index auf einem öffentlichen Leaderboard, Top-Score-abhängige Outfits/Styles für die Drone zuzuweisen, und eigene Controller zu teilen. Andernfalls ist es mein Ziel, Teil 1 zu implementieren.
 
@@ -78,13 +78,13 @@ Das Resultat wird ein Set von Parametern sein, das ich für die Inferenz der KI 
 Da die KI auf Zufällig generierten Beispielsequenzen trainiert wird, sollte die Anzahl solcher Beispiele die Performance der KI beeinflusse. Dadurch kann ich verschieden gute KIs speichern, indem ich die Qualität und Quantität der Trainingsdaten variiere. Diese weredn im Game die verschiedenen Schwierigkeitslevels bilden.
 
 \subsection{Inferenz in JS}
-Wie angedeutet, wird die Inferenz in JS implementiert (in Python würde sie ebenfalls für Debugging implementiert). Das bedeutet, dass die Architektur (als Funktion mit noch unbestimmten Parametern zu verstehen) zuerst definiert, und dann die von Python gespeicherten Parameter laden wird. Diese Parameter müssen nicht privat sein, und können auf der Client-Side geladen werden (async). Somit wird eine Instanz eines trainierten KI Models in JS geladen. Diese kann dann angewendet werde, um Zustand->Antriebwerte transformationen durchzuführen, um die Drone zu steuern.
+Wie angedeutet, wird die Inferenz in JS implementiert (in Python wird sie ebenfalls für Debugging implementiert). Das bedeutet, dass die Architektur (als Funktion mit noch unbestimmten Parametern zu verstehen) zuerst definiert, und dann die von Python gespeicherten Parameter laden wird. Diese Parameter müssen nicht privat sein, und können auf der Client-Side geladen werden (async). Somit wird eine Instanz eines trainierten KI Models in JS geladen. Diese kann dann angewendet werde, um Zustand->Antriebwerte transformationen durchzuführen, um die Drone zu steuern.
 
 \subsection{Visualisierung in Canvas}
-Das Verhalten der Dronen soll auf einem Canvas Element visualisiert werden, mit verschiedenen Farben / Designs für die Dronen. Die Antriebe und desser nummerischen Werte sollen ebenfalls visualisiert werden.
+Das Verhalten der Dronen soll auf einem Canvas Element visualisiert werden, mit verschiedenen Farben / Designs für die Dronen. Die Antriebe und dessen nummerischen Werte sollen ebenfalls visualisiert werden.
 
 \noindent
-Der Hintergrund des Canvas wird in Sektion 0.6 genauer beschrieben.  
+Der Hintergrund des Canvas wird in Sektion 1.6 genauer beschrieben.  
 
 \subsection{User Inputs für Steuerung (Handy + Laptop)}
 Damit ein User gegen die KI-gesteuerte Drone antreten kann, müssen Input möglichkeiten für User bestehen, sowohl auf dem Handy als auch auf grösseren Screens mit externer Tastatur. Für die beiden Antriebe (j, k) werden zwei Tasten, UP/DOWN oder A/D, die Inputs geben. Anstatt stetige Werte zu generieren, werden dabei binäre Werte (0, 1) generiert, wobei User die Tasten beliebig clicken oder nicht clicken können, um die Drone zu kontrollieren.  
@@ -101,7 +101,7 @@ Um dies effektiv zu machen, soll die von Usern kontrollierte Drone im Mittelpunk
 \subsection{Drag \& Drop Interface für eigene Funktion} 
 Sollte das eigene interagieren mit dem Spiel anstrengend, oder an den eigenen Fähigkeiten gezweifelt werden, soll es auch die Möglichkeit geben einen eigenen Algorihmus zu bauen, um, im Sinne des Programmierens, selber weniger machen zu müssen. Somit können KIs oder Users selbst gegen eigenen Algorithmen antreten.  
 
-Dazu werden die Elemente des Zustandsvektors (Input der KI), Operatoren, und Float Werte als Ziehbare HTML Elemente dargestellt, wobei die User diese selbst selbst Elemente hinzufügen / entfernen (Drag \& Drop), Operatoren und Faktoren definieren, und eine (deterministische) Funktion zur Berechnung der Antriebe erstellen können. Im gegensatz zur Probabilisitischen KI wird diese Funktion (bspw. $a \times Geschwindigkeit_x - b \times Winkel \dots$) im Spiel getestet, sodass User die Parameter der Funktion anpassen (quasi debuggen) können.  
+Dazu werden die Elemente des Zustandsvektors (Input der KI), Operatoren, und Float Werte als Ziehbare HTML Elemente dargestellt, wobei die User diese Elemente hinzufügen / entfernen (Drag \& Drop), Operatoren und Faktoren definieren, und eine (deterministische) Funktion zur Berechnung der Antriebe erstellen können. Im gegensatz zur Probabilisitischen KI wird diese Funktion (bspw. $a \times Geschwindigkeit_x - b \times Winkel \dots$) im Spiel getestet, sodass User die Parameter der Funktion anpassen (quasi debuggen) können.  
 
 \begin{center}
   \includegraphics[scale=.475]{slide2.png}
@@ -131,7 +131,7 @@ Die Navigation für die Tabs soll dabei immer sichtbar sein.
 
 \section{}
 \subsection{Erklärung / Inspector}
-Es soll zusätzlich die Möglichkeit geben, die KI zu "untersuchen", das heisst, die Neuronen der KI werden visualisiert, Users können Inputs der KI modifizieren und die daraus resultierenden Outputs beobachten. Es soll ebenfalls angezeigt werden, welche Inputs wie viel Einfluss für einen bestimmten Output hatten (explainability methods). Ausserem wird kurz der mathematische Aufbau der KI erklärt, und soll Usern ein intuitives, visuelles tool geben, das um das innere der KI in Echtzeit zu beobachten.
+Es soll zusätzlich die Möglichkeit geben, die KI zu ``untersuchen'', das heisst, die Neuronen der KI werden visualisiert, Users können Inputs der KI modifizieren und die daraus resultierenden Outputs beobachten. Es soll ebenfalls angezeigt werden, welche Inputs wie viel Einfluss für einen bestimmten Output hatten (explainability methods). Ausserem wird kurz der mathematische Aufbau der KI erklärt, und soll Usern ein intuitives, visuelles tool geben, um das innere der KI in Echtzeit zu beobachten.
 
 \begin{center}
   \includegraphics[scale=.475]{slide3.png}
@@ -151,15 +151,15 @@ Sollte die Zeit noch reichen, werde ich auf einem Raspberry Pi Server als Backen
 Ebenfalls werden die Algorithmen eines Users als Option gelistet, bei der Wahl vom Gegner (KIs, PIDs)
 
 \subsection{Skins/Outfits für Drone (automatisch angewendet, abhängig von Scores, Siegen, Schwierigkeitslevels)}
-Das Bild, das das Aussehen der Drone bestimmt soll Stufenweise abhängig vom erreichten Top Score eins Users sein, wobei dieses Aussehen (``Skin'' oder ``Outfit'') mit höheren Top Scores auch ``besser aussehen'' soll, obwohl das eine subjektive Sache bleibt. 
+Das Bild, dass das Aussehen der Drone bestimmt soll Stufenweise abhängig vom erreichten Top Score eins Users sein, wobei dieses Aussehen (``Skin'' oder ``Outfit'') mit höheren Top Scores auch ``besser aussehen'' soll, obwohl das eine subjektive Sache bleibt. 
 
 \subsection{Leaderboard}
-Das Leaderboard soll die Usernamen und deren Top Scores anzeigen. Diese sollen geordnet augelistet werden, sodass der die besten Spieler und Algorithmen sichtbar sind. Es wird also kategorisiert, ob die Scores von Usern oder eigenen Algorithmen erreicht wurden.
+Das Leaderboard soll die Usernamen und deren Top Scores anzeigen. Diese sollen geordnet gelistet werden, sodass die besten Spieler und Algorithmen sichtbar sind. Es wird also kategorisiert, ob die Scores von Usern oder eigenen Algorithmen erreicht wurden.
 
 \subsection{Benchmarks für Algorithmen}
-Die eigen erstellten Algorithmen sollen als Option nebst den KIs hochgeladen werden, damit andere User ihren eigene Algorithmus gegen den von anderen Usern testen können (und das Rennen visuell anzeigen lassen). 
+Die selbst erstellten Algorithmen sollen als Option nebst den KIs hochgeladen werden, damit andere User ihren eigene Algorithmus gegen den von anderen Usern testen können (und das Rennen visuell anzeigen lassen). 
 
 \section*{Bemerkungen}
-Für die Implementierung ohne Backend sollten Scores, Algorithmen, geladene KI modelle in der Browser-Cache bleiben, um diese beim Neuladen nicht zu verlieren. 
+Für die Implementierung ohne Backend sollten Scores, Algorithmen, geladene KI modelle in der Browser-Cache bleiben. 
 
 \end{document}
