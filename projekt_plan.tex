@@ -28,7 +28,7 @@
 \titlespacing*{\section}
 {0pt}{3.5ex plus 1ex minus .2ex}{-0.5em}
 
-\title{\vspace{-3em}\textbf{AI Drone Race}}
+\title{\vspace{-3em}\textbf{AI Pilots}}
 \author{\vspace{-2em}\textbf{}\\\textbf{Author: Kaito Soga}\\\textbf{Fach: IN29}\\\textbf{Sprachen: JS + Python}\\\textbf{Datum: 12 Januar 2026}}
 \date{\vspace{-3em}}
 
@@ -44,11 +44,13 @@ In dem geplanten Game tritt ein User in einem Rennen gegen eine KI gesteuerte 2D
 
 Die Steuerung für den User besteht aus zwei Inputs, welche die zwei Antriebe der Drone kontrollieren. Die KI steuert ihre Drone mit einem simplen feedforward network (FFN).
 
-Zusätzlich kann ein User, durch das Bauen einer Funktion die den Zustandsvektor als input nimmt, und als output die Antriebswerte der Drone zurückgibt, einen eigenenen Controller erstellen. Diese kann ebenfalls gegen die KI oder den User selbst antreten.
+Zusätzlich kann ein User, durch das Bauen einer Funktion die den Zustandsvektor als input nimmt und als output die Antriebswerte der Drone zurückgibt, einen eigenenen Controller erstellen. Diese kann ebenfalls gegen die KI oder den User selbst antreten.
 
 Die Drone selbst unterliegt realistischen Physikalischen Eigenschaften (Schwerkraft, Momentum, Beschleunigung, Rotation (-sgeschindigkeit)), und die Umgebung wird zufällig mit vorbestimmten Bildern generiert, wobei die Drone im Mittelpunkt des Canvas bleibt, sodass sich der Hintergrund bewegt.
 
-*Sollte die Zeit noch reichen, werde ich im Backend auf einem Raspberry-Pi ein simples Login erstellen, um Usern einen Top-Score, Index auf einem öffentlichen Leaderboard, Top-Score-abhängige Outfits/Styles für die Drone zuzuweisen, und eigene Controller zu teilen. Andernfalls ist es mein Ziel, Teil 1 zu implementieren.
+*Sollte die Zeit noch reichen, werde ich ein Zusätzlich das innere der KI visualisieren, um Usern eine Einsicht in dessen Funktion zu gebem. Der Fokus liegt dabei nicht auf dem Game, sondern darauf, die KI durch intuitive Visualisierung zu verstehen und zu in Echtzeit zu testen.
+
+Für mehr Interaktion werde ich im Backend auf einem Raspberry-Pi ein simples Login erstellen, um Usern einen Top-Score, Index auf einem öffentlichen Leaderboard, Top-Score-abhängige Outfits/Styles für die Drone zuzuweisen, und eigene Controller zu teilen. Andernfalls ist es mein Ziel, Teil 1 zu implementieren.
 
 \section*{Details + Schritte der Implementierung}
 
@@ -93,7 +95,7 @@ Um die Umgbung (in Canvas) spannend zu machen, soll der Hintergrund (die Map) de
 Um dies effektiv zu machen, soll die von Usern kontrollierte Drone im Mittelpunkt des Screens bleiben, und der Hintergrund soll sich bewegen, um das Vorkommen einer unendlich grossen Map zu erzeugen.  
 
 \begin{center}
-  \includegraphics[scale=.5]{slide1.png}
+  \includegraphics[scale=.475]{slide1.png}
 \end{center}
 
 \subsection{Drag \& Drop Interface für eigene Funktion} 
@@ -102,14 +104,14 @@ Sollte das eigene interagieren mit dem Spiel anstrengend, oder an den eigenen F�
 Dazu werden die Elemente des Zustandsvektors (Input der KI), Operatoren, und Float Werte als Ziehbare HTML Elemente dargestellt, wobei die User diese selbst selbst Elemente hinzufügen / entfernen (Drag \& Drop), Operatoren und Faktoren definieren, und eine (deterministische) Funktion zur Berechnung der Antriebe erstellen können. Im gegensatz zur Probabilisitischen KI wird diese Funktion (bspw. $a \times Geschwindigkeit_x - b \times Winkel \dots$) im Spiel getestet, sodass User die Parameter der Funktion anpassen (quasi debuggen) können.  
 
 \begin{center}
-  \includegraphics[scale=.5]{slide2.png}
+  \includegraphics[scale=.475]{slide2.png}
 \end{center}
 
 \subsection{Game-Logik (Schwierigkeitslevels, Scores, Sieger, Pause/Quit, Menu)}
 Die oben genannten Features sollen möglichst übersichtlich implementiert und verbunden werden. Dazu soll es verschiedene Tabs und ein Menu geben.
 
 \noindent
-Tabs: ``Game'', ``Scores'', ``My PID''
+Tabs: ``Game'', ``Inspect AI'', ``Custom Controller'', ``Skins'', ``Leaderboard'', ``Profile''
 
 \noindent
 Menus:
@@ -117,17 +119,24 @@ Menus:
 \setlength{\parskip}{0em}
   \item ``Game'': Menu zur Auswahl von Input Art (Keyboard / PID), der Schwierigkeit, Länge des Spiels, ``Play'', ``Pause'', ``Quit'' Button, Input möglichkeiten für User.
   \item ``Scores'': Vergangene Punkte, Wins/Defeats, Art von Spieler (Mensch/PID).
-  \item ``My PID'': Das interface, um den eigenen Algorithmus zusammenzustellen.
+  \item ``Custom Controller'': Das interface, um den eigenen Algorithmus zusammenzustellen.
 \end{itemize}
 \vspace{-1em}
 \noindent
 Die Navigation für die Tabs soll dabei immer sichtbar sein.
 
 \begin{center}
-  \includegraphics[scale=.5]{slide0.png}
+  \includegraphics[scale=.475]{slide0.png}
 \end{center}
 
 \section{}
+\subsection{Erklärung / Inspector}
+Es soll zusätzlich die Möglichkeit geben, die KI zu "untersuchen", das heisst, die Neuronen der KI werden visualisiert, Users können Inputs der KI modifizieren und die daraus resultierenden Outputs beobachten. Es soll ebenfalls angezeigt werden, welche Inputs wie viel Einfluss für einen bestimmten Output hatten (explainability methods). Ausserem wird kurz der mathematische Aufbau der KI erklärt, und soll Usern ein intuitives, visuelles tool geben, das um das innere der KI in Echtzeit zu beobachten.
+
+\begin{center}
+  \includegraphics[scale=.475]{slide3.png}
+\end{center}
+
 \subsection{Backend / Login}
 Sollte die Zeit noch reichen, werde ich auf einem Raspberry Pi Server als Backend ein simples Login für User erstellen, mit Email, Passwort, und Username. Mit einem Userobjekt können dann folgende Werte assoziiert werden:
 \vspace{-1em}
