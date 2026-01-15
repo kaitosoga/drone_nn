@@ -11,4 +11,5 @@ projekt_plan.fdb_latexmk
 projekt_plan.out
 projekt_plan.run.xml
 projekt_plan.synctex.gz
+end.aux
 .vscode/
