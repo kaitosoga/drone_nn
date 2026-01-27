@@ -1,1 +1,32 @@
-<p>home works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <h1>Welcome back, {{this.userName}}!</h1>
+
+<!--loops:-->
+
+@for (item of this.user; track this.user) {
+    <p>User name: {{item["name"]}}</p>
+}
+
+
+<div *ngFor="let u of user">
+    <p>ID: {{ u.id }}</p>
+    <p>Level: {{ u.level }}</p>
+    <p>Password: {{ u.passwd }}</p>
+</div>
+
+
+<app-info></app-info>
+
+<app-game></app-game>
+    
+</body>
+</html>
+
